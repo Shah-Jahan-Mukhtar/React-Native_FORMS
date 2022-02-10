@@ -15,6 +15,7 @@ import Home from "./screens/Home";
 import File from "./screens/File";
 import Callback from "./screens/Callback";
 import Forms from "./screens/Forms";
+import PickerItem from "./screens/PickerItem";
 // const Stack = createStackNavigator();
 
 export default function App() {
@@ -53,7 +54,9 @@ export default function App() {
     // </SafeAreaView>
     // <File />
     // <Callback />
-    <Forms />
+    // <Forms />
+    <PickerItem />
+
     // <SafeAreaView style={{ marginTop: 50 }}>
     //   <Text>Count:{Count}</Text>
 
