@@ -71,7 +71,7 @@ const Home = ({ navigation, route }) => {
               navigation.navigate("ColorPaletteModal");
             }}
           >
-            <Text>Launch Model</Text>
+            <Text style={styles.buttonText}>Add a color scheme</Text>
           </TouchableOpacity>
         }
       />
@@ -83,6 +83,12 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 18,
     fontWeight: "bold",
+  },
+  buttonText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "teal",
+    marginBottom: 10,
   },
 });
 export default Home;
