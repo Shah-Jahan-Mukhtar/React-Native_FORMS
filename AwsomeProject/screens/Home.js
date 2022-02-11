@@ -56,6 +56,15 @@ const Home = ({ navigation }) => {
         )}
         refreshing={isRefreshing}
         onRefresh={handleRefresh}
+        ListHeaderComponent={
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("ColorPaletteModal");
+            }}
+          >
+            <Text>Launch Model</Text>
+          </TouchableOpacity>
+        }
       />
     </View>
   );

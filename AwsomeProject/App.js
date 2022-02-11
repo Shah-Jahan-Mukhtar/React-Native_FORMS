@@ -7,16 +7,31 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-// import { NavigationContainer } from "@react-navigation/native";
-// import { createStackNavigator } from "@react-navigation/stack";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import Home from "./screens/Home";
-// import ColorPalette from "./screens/Colors";
+import ColorPalette from "./screens/Colors";
 // import { SafeAreaView } from "react-native-web";
 import File from "./screens/File";
 import Callback from "./screens/Callback";
 import Forms from "./screens/Forms";
 import PickerItem from "./screens/PickerItem";
-// const Stack = createStackNavigator();
+import ColorPaletteModal from "./screens/ColorPaletteModal";
+const RootStack = createStackNavigator();
+const MainStack = createStackNavigator();
+
+const MainStackScreen = () => {
+  return (
+    <MainStack.Navigator>
+      <MainStack.Screen name="Home" component={Home} />
+      <MainStack.Screen
+        name="ColorPalette"
+        component={ColorPalette}
+        options={({ route }) => ({ title: route.params.paletteName })}
+      />
+    </MainStack.Navigator>
+  );
+};
 
 export default function App() {
   // const [Count, setCount] = useState("");
@@ -55,7 +70,7 @@ export default function App() {
     // <File />
     // <Callback />
     // <Forms />
-    <PickerItem />
+    // <PickerItem />
 
     // <SafeAreaView style={{ marginTop: 50 }}>
     //   <Text>Count:{Count}</Text>
@@ -70,16 +85,19 @@ export default function App() {
     //   </View>
     // </SafeAreaView>
 
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="Home" component={Home} />
-    //     <Stack.Screen
-    //       name="ColorPalette"
-    //       component={ColorPalette}
-    //       options={({ route }) => ({ title: route.params.colorPalette })}
-    //     />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <RootStack.Navigator mode="model">
+        <RootStack.Screen
+          name="Main"
+          component={MainStackScreen}
+          options={{ headerShown: false }}
+        />
+        <RootStack.Screen
+          name="ColorPaletteModal"
+          component={ColorPaletteModal}
+        />
+      </RootStack.Navigator>
+    </NavigationContainer>
   );
 }
 

@@ -1,9 +1,10 @@
-import { View, Text, Picker, StyleSheet } from "react-native";
+import { View, Text, Picker, StyleSheet, Switch } from "react-native";
 import React, { useState } from "react";
 
 const FOODS = ["apples", "doughnits", "Yorkshire pie", "pizza", "jellied eels"];
 const PickerItem = () => {
   const [value, setValue] = useState("pizza");
+  const [value1, setValue1] = useState(false);
 
   return (
     <View style={styles.container}>
@@ -16,6 +17,7 @@ const PickerItem = () => {
           <Picker.Item label={food} value={food} />
         ))}
       </Picker>
+      <Switch value={value1} onValueChange={setValue1} />
     </View>
   );
 };
