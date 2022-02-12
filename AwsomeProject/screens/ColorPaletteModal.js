@@ -175,6 +175,18 @@ const ColorPaletteModal = ({ navigation }) => {
       navigation.navigate("Home", { newcolorPalette });
     }
   }, [name]);
+
+  const handleValueChange = useCallback((value, color) => {
+    if (value === true) {
+      setSelectedColors((colors) => [...colors, color]);
+    } else {
+      setSelectedColors((colors) =>
+        colors.filter(
+          (selectedColors) => color.colorName === selectedColors.colorName
+        )
+      );
+    }
+  }, []);
   return (
     <View style={styles.container}>
       <Text style={styles.name}>Name of Palette</Text>
@@ -192,10 +204,14 @@ const ColorPaletteModal = ({ navigation }) => {
           <View style={styles.color}>
             <Text>{item.colorName}</Text>
             <Switch
-              value={selectedColors.find(
-                (color) => color.colorName === item.colorName
-              )}
-              onValueChange={() => {}}
+              value={
+                !!selectedColors.find(
+                  (color) => color.colorName !== item.colorName
+                )
+              }
+              onValueChange={(selectedColors) => {
+                handleValueChange(selectedColors, item);
+              }}
             />
           </View>
         )}
