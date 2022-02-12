@@ -167,14 +167,16 @@ const ColorPaletteModal = ({ navigation }) => {
   const handleSubmit = useCallback(() => {
     if (!name) {
       Alert.alert("Please enter a pallete name");
+    } else if (selectedColors.length < 3) {
+      Alert.alert("Please add atleast 3 colors");
     } else {
       const newcolorPalette = {
         paletteName: name,
-        colors: [],
+        colors: selectedColors,
       };
       navigation.navigate("Home", { newcolorPalette });
     }
-  }, [name]);
+  }, [name, selectedColors]);
 
   const handleValueChange = useCallback((value, color) => {
     if (value === true) {
@@ -182,7 +184,7 @@ const ColorPaletteModal = ({ navigation }) => {
     } else {
       setSelectedColors((colors) =>
         colors.filter(
-          (selectedColors) => color.colorName === selectedColors.colorName
+          (selectedColors) => color.colorName !== selectedColors.colorName
         )
       );
     }
@@ -206,7 +208,7 @@ const ColorPaletteModal = ({ navigation }) => {
             <Switch
               value={
                 !!selectedColors.find(
-                  (color) => color.colorName !== item.colorName
+                  (color) => color.colorName === item.colorName
                 )
               }
               onValueChange={(selectedColors) => {
